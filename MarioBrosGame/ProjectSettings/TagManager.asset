@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Fondo
+    uniqueID: 953430643
+    locked: 0
+  - name: Arbusto
+    uniqueID: 2699462249
+    locked: 0
+  - name: Suelo
+    uniqueID: 843630175
+    locked: 0
+  - name: Plataforma
+    uniqueID: 951722167
+    locked: 0
+  - name: Personajes
+    uniqueID: 1895847965
+    locked: 0
