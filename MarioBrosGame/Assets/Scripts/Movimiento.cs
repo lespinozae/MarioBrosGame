@@ -21,7 +21,7 @@ public class Movimiento : MonoBehaviour {
 
     private void Awake()
     {
-
+        animator = GetComponent<Animator>(); 
     }
 
     // Use this for initialization
@@ -45,6 +45,7 @@ public class Movimiento : MonoBehaviour {
             movX = transform.position.x + (inputX * velX);
             transform.position = new Vector3(movX, transform.position.y, 0);
             transform.localScale = new Vector3(-1, 1, 1);
+            animator.SetFloat("velX", Mathf.Abs(inputX));
         }
 
         //Salto
