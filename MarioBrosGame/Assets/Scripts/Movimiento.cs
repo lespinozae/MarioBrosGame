@@ -45,7 +45,15 @@ public class Movimiento : MonoBehaviour {
             movX = transform.position.x + (inputX * velX);
             transform.position = new Vector3(movX, transform.position.y, 0);
             transform.localScale = new Vector3(-1, 1, 1);
-            animator.SetFloat("velX", Mathf.Abs(inputX));
+        }
+
+        if (inputX != 0)
+        {
+            animator.SetFloat("velX", 1);
+        }
+        else
+        {
+            animator.SetFloat("velX", 0);
         }
 
         //Salto
