@@ -4,10 +4,17 @@ using UnityEngine;
 
 public class Movimiento : MonoBehaviour {
 
+    //Variables movientos 
     public float velX = 0.1f;
     public float movX;
     public float inputX;
+
+    //Variables salto
     public float fuerzaSalto = 350;
+    public Transform pie;
+    public float radioPie;
+    public LayerMask suelo;
+    public bool enSuelo;
 
     // Use this for initialization
     void Start () {
@@ -31,6 +38,12 @@ public class Movimiento : MonoBehaviour {
             transform.position = new Vector3(movX, transform.position.y, 0);
             transform.localScale = new Vector3(-1, 1, 1);
         }
+
+        //Salto
+
+        enSuelo = Physics2D.OverlapCircle(pie.position, radioPie, suelo);
+
+        Debug.Log(enSuelo);
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
