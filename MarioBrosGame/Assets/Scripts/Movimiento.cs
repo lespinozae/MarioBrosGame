@@ -16,6 +16,14 @@ public class Movimiento : MonoBehaviour {
     public LayerMask suelo;
     public bool enSuelo;
 
+    //Animaciones
+    Animator animator;
+
+    private void Awake()
+    {
+
+    }
+
     // Use this for initialization
     void Start () {
 		
@@ -45,7 +53,7 @@ public class Movimiento : MonoBehaviour {
 
         Debug.Log(enSuelo);
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (enSuelo && Input.GetKeyDown(KeyCode.Space))
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, fuerzaSalto));
         }
