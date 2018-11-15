@@ -47,7 +47,7 @@ public class Movimiento : MonoBehaviour {
             transform.localScale = new Vector3(-1, 1, 1);
         }
 
-        if (inputX != 0)
+        if (inputX != 0 && enSuelo)
         {
             animator.SetFloat("velX", 1);
         }
@@ -59,12 +59,19 @@ public class Movimiento : MonoBehaviour {
         //Salto
 
         enSuelo = Physics2D.OverlapCircle(pie.position, radioPie, suelo);
-
+        if (enSuelo)
+        {
+            animator.SetBool("enSuelo", true);
+        }
+        else{
+            animator.SetBool("enSuelo", false);
+        }
         Debug.Log(enSuelo);
 
-        if (enSuelo && Input.GetKeyDown(KeyCode.Space))
+        if (enSuelo && Input.GetKeyDown(KeyCode.X))
         {
             GetComponent<Rigidbody2D>().AddForce(new Vector2(0, fuerzaSalto));
+            animator.SetBool("enSuelo", false);
         }
       }
 }
