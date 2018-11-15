@@ -16,6 +16,9 @@ public class Movimiento : MonoBehaviour {
     public LayerMask suelo;
     public bool enSuelo;
 
+    //Variables agachados
+    public bool agachado;
+
     //Animaciones
     Animator animator;
 
@@ -32,20 +35,27 @@ public class Movimiento : MonoBehaviour {
     private void FixedUpdate()
     { 
         inputX= Input.GetAxis("Horizontal");
-
-        if (inputX > 0)
+        if(!agachado)
         {
-            movX = transform.position.x + (inputX * velX);
-            transform.position = new Vector3(movX, transform.position.y, 0);
-            transform.localScale = new Vector3(1, 1, 1);
+            if (inputX > 0)
+            {
+                movX = transform.position.x + (inputX * velX);
+                transform.position = new Vector3(movX, transform.position.y, 0);
+                transform.localScale = new Vector3(1, 1, 1);
+            }
+
+            if (inputX < 0)
+            {
+                movX = transform.position.x + (inputX * velX);
+                transform.position = new Vector3(movX, transform.position.y, 0);
+                transform.localScale = new Vector3(-1, 1, 1);
+            }
+        }
+        else
+        {
+
         }
 
-        if (inputX < 0)
-        {
-            movX = transform.position.x + (inputX * velX);
-            transform.position = new Vector3(movX, transform.position.y, 0);
-            transform.localScale = new Vector3(-1, 1, 1);
-        }
 
         if (inputX != 0 && enSuelo)
         {
@@ -62,16 +72,27 @@ public class Movimiento : MonoBehaviour {
         if (enSuelo)
         {
             animator.SetBool("enSuelo", true);
+
+            if (Input.GetKeyDown(KeyCode.X) && !agachado)
+            {
+                GetComponent<Rigidbody2D>().AddForce(new Vector2(0, fuerzaSalto));
+                animator.SetBool("enSuelo", false);
+            }
         }
         else{
             animator.SetBool("enSuelo", false);
         }
-        Debug.Log(enSuelo);
 
-        if (enSuelo && Input.GetKeyDown(KeyCode.X))
+        //Agacharse
+
+        if(enSuelo && Input.GetKey(KeyCode.DownArrow))
         {
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0, fuerzaSalto));
-            animator.SetBool("enSuelo", false);
+            animator.SetBool("agachado", true);
+            agachado = true;
+        }
+        else{
+            animator.SetBool("agachado", false);
+            agachado = false;
         }
       }
 }
