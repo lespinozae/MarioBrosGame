@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Mario
+  - Tortugas
   layers:
   - Default
   - TransparentFX
@@ -18,7 +19,7 @@ TagManager:
   - Plataforma
   - Fondo
   - Personaje
-  - 
+  - Enemigos
   - 
   - 
   - 
